@@ -1,6 +1,6 @@
 using System;
 
-namespace trabalho_oop.classes
+namespace trabalho_oop.classes.usuarios
 {
     public class Usuario : Pessoa
     {
@@ -12,12 +12,12 @@ namespace trabalho_oop.classes
             Endereco endereco,
             string matricula,
             string curso
-        ) : base(string nome, Endereco endereco) 
+        ) : base(string nome, Endereco endereco)
         {
             this.matricula = matricula;
             this.curso = curso;
         }
-        
+
         public string Matricula
         {
             get { return matricula; }
@@ -32,8 +32,7 @@ namespace trabalho_oop.classes
 
         public override string ToString()
         {
-            return $"matricula={matricula};" +
-                   $"curso={curso};";
+            return base.ToString() + $"matricula={matricula}; curso={curso};";
         }
     }
 }

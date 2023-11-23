@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace trabalho_oop.classes
+namespace trabalho_oop.classes.usuarios
 {
     public class Endereco
     {
@@ -67,7 +67,7 @@ namespace trabalho_oop.classes
             get { return uf; }
             set {
                 if (value.Length == 2) {
-                    uf = value; 
+                    uf = value;
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace trabalho_oop.classes
                 string cepRegex = @"^\d{5}-\d{3}$";
 
                 if (Regex.IsMatch(value, cepRegex)) {
-                    cep = value; 
+                    cep = value;
                 }
             }
         }

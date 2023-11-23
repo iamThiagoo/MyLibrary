@@ -1,8 +1,8 @@
 using System;
 
-namespace trabalho_oop.classes
+namespace trabalho_oop.classes.usuarios
 {
-    public class Pessoa
+    abstract class Pessoa
     {
         private string nome;
         private Endereco endereco;
@@ -14,7 +14,7 @@ namespace trabalho_oop.classes
             this.nome = nome;
             this.endereco = endereco;
         }
-        
+
         public string Nome
         {
             get { return nome; }
