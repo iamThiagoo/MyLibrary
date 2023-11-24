@@ -2,7 +2,7 @@ using System;
 
 namespace trabalho_oop.classes.usuarios
 {
-    abstract class Pessoa
+    public class Pessoa
     {
         private string nome;
         private Endereco endereco;

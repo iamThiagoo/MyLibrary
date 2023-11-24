@@ -23,16 +23,16 @@ namespace trabalho_oop.classes.usuarios
 
         public Usuario getUserByIndex(int index)
         {
-            Usuario usuario = usuarios.Get(index);
+            Usuario usuario = usuarios[index];
             return usuario;
         }
 
         public bool deleteUserByMatricula(string matricula)
         {
-            int index = usuarios.Where('matricula' => matricula).FirstOrDefault();
+            Usuario usuario = usuarios.FirstOrDefault(usuario => usuario.Matricula == matricula);
 
-            if (index) {
-                usuarios.RemoveAt(index);
+            if (usuario != null) {
+                usuarios.Remove(usuario);
                 return true;
             }
 

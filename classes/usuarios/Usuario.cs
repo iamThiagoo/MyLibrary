@@ -5,14 +5,14 @@ namespace trabalho_oop.classes.usuarios
     public class Usuario : Pessoa
     {
         private string matricula;
-        private Endereco curso;
+        private string curso;
 
         public Usuario (
             string nome,
             Endereco endereco,
             string matricula,
             string curso
-        ) : base(string nome, Endereco endereco)
+        ) : base(nome, endereco)
         {
             this.matricula = matricula;
             this.curso = curso;
@@ -24,7 +24,7 @@ namespace trabalho_oop.classes.usuarios
             set { matricula = value; }
         }
 
-        public Endereco Curso
+        public string Curso
         {
             get { return curso; }
             set { curso = value; }
