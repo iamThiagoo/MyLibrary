@@ -1,6 +1,6 @@
 using System;
 
-namespace trabalho_oop.classes.menu
+namespace trabalho_oop.classes.biblioteca.menu
 {
     class MenuOpcoes 
     {
