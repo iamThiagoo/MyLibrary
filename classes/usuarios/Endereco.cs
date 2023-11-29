@@ -86,13 +86,13 @@ namespace trabalho_oop.classes.usuarios
 
         public override string ToString()
         {
-            return $"rua={rua};" +
-                   $"numero={numero};" +
-                   $"complemento={complemento};" +
-                   $"bairro={bairro};" +
-                   $"cidade={cidade};" +
-                   $"uf={uf};" +
-                   $"cep={cep}";
+            return $"Rua: {rua};" +
+                   $"Numero: {numero};" +
+                   $"Complemento: {complemento};" +
+                   $"Bairro: {bairro};" +
+                   $"Cidade: {cidade};" +
+                   $"Uf: {uf};" +
+                   $"Cep: {cep}";
         }
     }
 }

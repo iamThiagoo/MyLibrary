@@ -1,4 +1,5 @@
 using System;
+using trabalho_oop.classes.biblioteca.produtos;
 
 namespace trabalho_oop.classes.biblioteca
 {
@@ -11,7 +12,7 @@ namespace trabalho_oop.classes.biblioteca
             items = new List<ItemBiblioteca>();;
         }
 
-        public string addItem(ItemBiblioteca item)
+        public void addItem(ItemBiblioteca item)
         {
             items.Add(item);
         }

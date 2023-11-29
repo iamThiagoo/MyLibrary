@@ -52,7 +52,7 @@ namespace trabalho_oop.classes.biblioteca.produtos
 
         public override string ToString()
         {
-            return $"identificacao={identificacao};titulo={titulo};situacao={situacao}";
+            return $"Identificação: {identificacao}, Título: {titulo}, Situação: {situacao}";
         }
     }
 }

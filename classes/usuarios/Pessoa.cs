@@ -29,8 +29,9 @@ namespace trabalho_oop.classes.usuarios
 
         public override string ToString()
         {
-            return $"nome={nome};" +
-                   $"endereco={endereco};";
+            return $"Nome: {nome}, " +
+                   $"Endereço: {endereco.Rua}, {endereco.Numero}, ({endereco.Complemento}) - " +
+                   $"{endereco.Cidade}, {endereco.Uf}";
         }
     }
 }

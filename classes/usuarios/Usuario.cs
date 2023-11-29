@@ -32,7 +32,7 @@ namespace trabalho_oop.classes.usuarios
 
         public override string ToString()
         {
-            return base.ToString() + $"matricula={matricula}; curso={curso};";
+            return $"Matrícula: {matricula}, Curso: {curso}, " + base.ToString();
         }
     }
 }

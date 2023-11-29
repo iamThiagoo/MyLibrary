@@ -1,4 +1,5 @@
 using System;
+using trabalho_oop.interfaces;
 
 namespace trabalho_oop.classes.biblioteca.produtos
 {
@@ -7,7 +8,12 @@ namespace trabalho_oop.classes.biblioteca.produtos
         private string assunto;
         private int duracao;
 
-        public DVD(string assunto, int duracao)
+        public DVD(
+            int identificacao, 
+            string titulo, 
+            string assunto, 
+            int duracao
+        ) : base (identificacao, titulo)
         {
             this.assunto = assunto;
             this.duracao = duracao;
@@ -25,27 +31,31 @@ namespace trabalho_oop.classes.biblioteca.produtos
 
         public bool Disponivel()
         {
-            return this.Situacao == 'disponivel' ?? false;
+            return Situacao == "disponivel" ? true : false;
         }
 
         public bool Emprestado()
         {
-            return this.Situacao == 'emprestado' ?? false;
+            return Situacao == "emprestado" ? true : false;
         }
 
         public bool Bloqueado()
         {
-            return this.Situacao == 'bloqueado' ?? false;
+            return Situacao == "bloqueado" ? true : false;
         }
 
         public bool Atrasado()
         {
-            return this.Situacao == 'atrasado' ?? false;
+            return Situacao == "atrasado" ? true : false;
         }
 
         public override string ToString()
         {
-            return $"assunto={assunto};duracao={duracao}";
+            return $"Identificação:{Identificacao}, " + 
+                   $"Título:{Titulo}, " + 
+                   $"Assunto: {assunto}, " + 
+                   $"Duração: {duracao}, " +
+                   $"Status do Item: {Situacao}";
         }
     }
 }

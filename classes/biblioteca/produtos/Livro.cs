@@ -9,7 +9,13 @@ namespace trabalho_oop.classes.biblioteca.produtos
         private string editora;
         private int paginas;
 
-        public Livro(string autor, string editora, int paginas)
+        public Livro(
+            int identificacao, 
+            string titulo, 
+            string autor, 
+            string editora, 
+            int paginas
+        ) : base(identificacao, titulo)
         {
             this.autor = autor;
             this.editora = editora;
@@ -33,27 +39,32 @@ namespace trabalho_oop.classes.biblioteca.produtos
 
         public bool Disponivel()
         {
-            return this.Situacao == 'disponivel' ?? false;
+            return Situacao == "disponivel" ? true : false;
         }
 
         public bool Emprestado()
         {
-            return this.Situacao == 'emprestado' ?? false;
+            return Situacao == "emprestado" ? true : false;
         }
 
         public bool Bloqueado()
         {
-            return this.Situacao == 'bloqueado' ?? false;
+            return Situacao == "bloqueado" ? true : false;
         }
 
         public bool Atrasado()
         {
-            return this.Situacao == 'atrasado' ?? false;
+            return Situacao == "atrasado" ? true : false;
         }
 
         public override string ToString()
         {
-            return $"autor={autor};editora={editora};paginas={paginas}";
+            return $"Identificação:{Identificacao}, " + 
+                   $"Título:{Titulo}, " + 
+                   $"Autor={autor}, " +
+                   $"Editora: {editora}, " +  
+                   $"Páginas: {paginas}, " +
+                   $"Status do Item: {Situacao}";
         }
     }
 }

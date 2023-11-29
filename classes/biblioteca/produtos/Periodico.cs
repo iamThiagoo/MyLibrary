@@ -1,4 +1,5 @@
 using System;
+using trabalho_oop.interfaces;
 
 namespace trabalho_oop.classes.biblioteca.produtos
 {
@@ -8,7 +9,13 @@ namespace trabalho_oop.classes.biblioteca.produtos
         private int numero;
         private int ano;
 
-        public DVD(string periodicidade, int numero, int ano)
+        public Periodico(
+            int identificacao, 
+            string titulo, 
+            string periodicidade, 
+            int numero, 
+            int ano
+        ) : base (identificacao, titulo)
         {
             this.periodicidade = periodicidade;
             this.numero = numero;
@@ -32,27 +39,33 @@ namespace trabalho_oop.classes.biblioteca.produtos
 
         public bool Disponivel()
         {
-            return this.Situacao == 'disponivel' ?? false;
+            return Situacao == "disponivel" ? true : false;
         }
 
         public bool Emprestado()
         {
-            return this.Situacao == 'emprestado' ?? false;
+            return Situacao == "emprestado" ? true : false;
         }
 
         public bool Bloqueado()
         {
-            return this.Situacao == 'bloqueado' ?? false;
+            return Situacao == "bloqueado" ? true : false;
         }
 
         public bool Atrasado()
         {
-            return this.Situacao == 'atrasado' ?? false;
+            return Situacao == "atrasado" ? true : false;
         }
 
         public override string ToString()
         {
-            return $"periodicidade={periodicidade};numero={numero};ano={ano}";
+            return 
+                   $"Identificação:{Identificacao}, " + 
+                   $"Título:{Titulo}, " + 
+                   $"Periodicidade:{periodicidade}," + 
+                   $"Número: {numero}," +
+                   $"Ano: {ano}, " +
+                   $"Status do Item: {Situacao}";
         }
     }
 }
