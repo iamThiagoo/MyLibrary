@@ -9,9 +9,9 @@ namespace trabalho_oop.classes.biblioteca.produtos
         private int duracao;
 
         public DVD(
-            int identificacao, 
-            string titulo, 
-            string assunto, 
+            int identificacao,
+            string titulo,
+            string assunto,
             int duracao
         ) : base (identificacao, titulo)
         {
@@ -51,9 +51,9 @@ namespace trabalho_oop.classes.biblioteca.produtos
 
         public override string ToString()
         {
-            return $"Identificação:{Identificacao}, " + 
-                   $"Título:{Titulo}, " + 
-                   $"Assunto: {assunto}, " + 
+            return $"Identificação:{Identificacao}, " +
+                   $"Título:{Titulo}, " +
+                   $"Assunto: {assunto}, " +
                    $"Duração: {duracao}, " +
                    $"Status do Item: {Situacao}";
         }

@@ -1,1 +1,73 @@
-Lista com Items da Biblioteca
+DVD
+50
+Wonka
+A história se concentrará no jovem Willy Wonka e em suas aventuras antes de abrir a fábrica de chocolate mais famosa do mundo.
+120
+
+DVD
+125
+Aquaman 2: o Reino Perdido
+Quando um poder ancestral é liberado, o Aquaman deve forjar uma aliança incômoda com um aliado improvável para proteger Atlântida e o resto do mundo, de uma devastação irreversível.
+115
+
+DVD
+253
+Ferrari
+Em 1957, nos bastidores da Fórmula 1, o ex-piloto Enzo Ferrari está em crise. A falência assombra a empresa que ele e a esposa, Laura, construíram uma década atrás. Seu casamento instável é ainda mais abalado pela perda do único filho do casal e o relacionamento com Lina Lardi. Ele decide contrapor essas perdas apostando tudo em uma corrida - a icônica Mille Miglia, na Itália
+100
+
+Livro
+68
+Cem Anos de Solidão
+Gabriel García Márquez
+Vintage Español
+448
+
+Livro
+220
+O Pequeno Príncipe
+Antoine de Saint-Exupéry
+Harcourt, Inc
+96
+
+Livro
+842
+O Sol é Para Todos
+Harper Lee
+Grand Central Publishing
+336
+
+Livro
+602
+O Alquimista
+Paulo Coelho
+HarperOne
+208
+
+Periódico
+63
+Revista "National Geographic"
+Mensal
+120
+1930
+
+Periódico
+108
+Revista "Vogue"
+Mensal
+1
+1892
+
+Periódico
+326
+Revista "Forbes"
+Mensal
+1
+1917
+
+Periódico
+701
+Revista "Rolling Stone"
+Mensal
+1
+1967
