@@ -2,29 +2,24 @@ using trabalho_oop.interfaces;
 
 namespace trabalho_oop.classes.biblioteca.menu
 {
-    public class MenuOpcoes : Menu
+    public class MenuItems : Menu
     {
-        public MenuOpcoes()
+        public MenuItems()
         {
             Console.Clear();
-
-            Logo();
-            MenuTitulo("Seja bem-vindo ao MyLibrary");
+            MenuOpcoes.MenuTitulo("Ações para Items");
             Opcoes();
 
-            while (true) {
-                string resposta = Console.ReadLine()!;
+            string resposta = Console.ReadLine()!;
 
-                if (int.TryParse(resposta, out int opcao)) {
-                    if (opcao >= 0 && opcao <= 3) {
-                        ExecutaOpcao(opcao);
-                        break;
-                    }
-                    else {
-                        OpcaoInvalida();
-                    }
-                }
-                else {
+            if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase))
+            {
+                MenuOpcoes menu = new MenuOpcoes();
+                return;
+            }
+
+            while (!int.TryParse(resposta, out int opcao)) {
+                if (opcao < 0 && opcao > 3) {
                     OpcaoInvalida();
                 }
             }
@@ -34,10 +29,12 @@ namespace trabalho_oop.classes.biblioteca.menu
         {
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
-            Console.WriteLine("1 - Listar ações para usuários");
-            Console.WriteLine("2 - Listar ações para itens");
-            Console.WriteLine("3 - Listar ações para Empréstimos");
-            Console.WriteLine("0 - Logout/Sair");
+            Console.WriteLine("1 - Cadastrar novo Item");
+            Console.WriteLine("2 - Listar todos os Livros (com status de: Disponível, Emprestado, Atrasado e Bloqueado)");
+            Console.WriteLine("3 - Listar todos os Períodicos (com status de: Disponível, Emprestado, Atrasado e Bloqueado)");
+            Console.WriteLine("4 - Listar todos os DVD's (com status de: Disponível, Emprestado, Atrasado e Bloqueado)");
+            Console.WriteLine("4 - Excluir um item");
+            Console.WriteLine("V - Voltar para Menu Principal");
         }
 
         public override void ExecutaOpcao(int opcao)
@@ -54,7 +51,6 @@ namespace trabalho_oop.classes.biblioteca.menu
                     MenuEmprestimos menuEmprestimos = new MenuEmprestimos();
                     break;
                 default:
-                    Logout();
                     break;
             }
         }
@@ -65,13 +61,6 @@ namespace trabalho_oop.classes.biblioteca.menu
             Thread.Sleep(2000);
             Console.Clear();
             Opcoes();
-        }
-
-        public void Logout()
-        {
-            Console.Clear();
-            Console.WriteLine("Até a próxima! :) \n");
-            return;
         }
     }
 }

@@ -12,23 +12,23 @@ namespace trabalho_oop.classes.biblioteca
             items = new List<ItemBiblioteca>();;
         }
 
-        public void addItem(ItemBiblioteca item)
+        public void AddItem(ItemBiblioteca item)
         {
             items.Add(item);
         }
 
-        public ItemBiblioteca getItemByIndex(int index)
+        public ItemBiblioteca GetItemByIndex(int index)
         {
             ItemBiblioteca item = items[index];
             return item;
         }
 
-        public int count()
+        public int Count()
         {
             return items.Count();
         }
 
-        public bool deleteByIdentificacao(int identificacao)
+        public bool DeleteByIdentificacao(int identificacao)
         {
             ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao);
 

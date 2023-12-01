@@ -4,10 +4,10 @@ namespace trabalho_oop.interfaces
 {
     public interface IEmprestavel 
     {
-        public bool Disponivel();
-        public bool Emprestado();
-        public bool Bloqueado();
-        public bool Atrasado();
-        public string ToString();
+        bool Disponivel();
+        bool Emprestado();
+        bool Bloqueado();
+        bool Atrasado();
+        string ToString();
     }
 }

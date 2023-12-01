@@ -2,42 +2,36 @@ using trabalho_oop.interfaces;
 
 namespace trabalho_oop.classes.biblioteca.menu
 {
-    public class MenuOpcoes : Menu
+    public class MenuEmprestimos : Menu
     {
-        public MenuOpcoes()
+        public MenuEmprestimos()
         {
             Console.Clear();
-
-            Logo();
-            MenuTitulo("Seja bem-vindo ao MyLibrary");
+            MenuOpcoes.MenuTitulo("Ações para Empréstimos");
             Opcoes();
 
-            while (true) {
-                string resposta = Console.ReadLine()!;
+            string resposta = Console.ReadLine()!;
 
-                if (int.TryParse(resposta, out int opcao)) {
-                    if (opcao >= 0 && opcao <= 3) {
-                        ExecutaOpcao(opcao);
-                        break;
-                    }
-                    else {
-                        OpcaoInvalida();
-                    }
-                }
-                else {
+            if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
+                MenuOpcoes menu = new MenuOpcoes();
+                return;
+            }
+
+            while(!int.TryParse(resposta, out int opcao)) {
+                if (opcao < 0 && opcao > 3) {
                     OpcaoInvalida();
                 }
-            }
+            }    
         }
 
         public override void Opcoes()
         {
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
-            Console.WriteLine("1 - Listar ações para usuários");
-            Console.WriteLine("2 - Listar ações para itens");
-            Console.WriteLine("3 - Listar ações para Empréstimos");
-            Console.WriteLine("0 - Logout/Sair");
+            Console.WriteLine("1 - Cadastrar novo Empréstimo");
+            Console.WriteLine("2 - Listar todos os Empréstimos (ordenado por Data de Devolução)");
+            Console.WriteLine("3 - Registrar devolução de Empréstimo");
+            Console.WriteLine("V - Voltar para Menu Principal");
         }
 
         public override void ExecutaOpcao(int opcao)
@@ -54,7 +48,6 @@ namespace trabalho_oop.classes.biblioteca.menu
                     MenuEmprestimos menuEmprestimos = new MenuEmprestimos();
                     break;
                 default:
-                    Logout();
                     break;
             }
         }
@@ -65,13 +58,6 @@ namespace trabalho_oop.classes.biblioteca.menu
             Thread.Sleep(2000);
             Console.Clear();
             Opcoes();
-        }
-
-        public void Logout()
-        {
-            Console.Clear();
-            Console.WriteLine("Até a próxima! :) \n");
-            return;
         }
     }
 }
