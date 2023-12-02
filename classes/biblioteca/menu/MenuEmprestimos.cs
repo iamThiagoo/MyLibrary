@@ -8,6 +8,8 @@ namespace trabalho_oop.classes.biblioteca.menu
 
         public MenuEmprestimos(CadEmprestimos cadEmprestimos)
         {
+            this.cadEmprestimos = cadEmprestimos;
+
             Console.Clear();
             MenuTitulo("Ações para Empréstimos");
             Opcoes();
@@ -26,7 +28,6 @@ namespace trabalho_oop.classes.biblioteca.menu
                 }
             }    
 
-            this.cadEmprestimos = cadEmprestimos;
             ExecutaOpcao(opcao);
         }
 
@@ -42,28 +43,7 @@ namespace trabalho_oop.classes.biblioteca.menu
 
         public override void ExecutaOpcao(int opcao)
         {
-            switch (opcao)
-            {
-                case 1:
-                    Emprestimo emprestimo = CadEmprestimo();
-                    cadEmprestimos.AddEmprestimo(emprestimo);
-
-                    Console.WriteLine("\n ✅ Empréstimo realizado com sucesso!");
-                    
-                    Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Usuários");
-                    Console.ReadKey();
-
-                    Console.Clear();
-                    Opcoes();
-
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                default:
-                    break;
-            }
+            Console.WriteLine("oi");
         }
 
         public override void OpcaoInvalida()
@@ -74,13 +54,13 @@ namespace trabalho_oop.classes.biblioteca.menu
             Opcoes();
         }
 
-        public Emprestimo CadEmprestimo()
-        {
-            Console.Clear();
-            MenuTitulo("Cadastro de Empréstimo");
+        //public Emprestimo CadEmprestimo()
+        //{
+        //    Console.Clear();
+        //    MenuTitulo("Cadastro de Empréstimo");
 
-            Console.WriteLine("\nInforme a identificação do item a ser emprestado:");
-            string identificacao = Console.ReadLine()!;
-        }
+        //    Console.WriteLine("\nInforme a identificação do item a ser emprestado:");
+        //    string identificacao = Console.ReadLine()!;
+        //}
     }
 }

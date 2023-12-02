@@ -9,6 +9,8 @@ namespace trabalho_oop.classes.biblioteca.menu
 
         public MenuItems(Acervo acervo)
         {
+            this.acervo = acervo;
+            
             Console.Clear();
             MenuTitulo("Ações para Items");
             Opcoes();
@@ -27,7 +29,6 @@ namespace trabalho_oop.classes.biblioteca.menu
                 }
             }
 
-            this.acervo = acervo;
             ExecutaOpcao(opcao);
         }
 

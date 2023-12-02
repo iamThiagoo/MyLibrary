@@ -6,6 +6,7 @@ namespace trabalho_oop.classes.biblioteca
 {
     public class Acervo
     {
+        private const ItemBiblioteca value = null!;
         private List<ItemBiblioteca> items;
 
         public Acervo ()
@@ -33,7 +34,7 @@ namespace trabalho_oop.classes.biblioteca
         public bool DeleteByIdentificacao(int identificacao)
         {
             if (items.Count > 0) {
-                ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao);
+                ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao)!;
 
                 if (item != null) {
                     items.Remove(item);
@@ -46,39 +47,43 @@ namespace trabalho_oop.classes.biblioteca
 
         public void AddItems()
         {
-            string[] linhas = File.ReadAllLines("/examples/Acervo.txt");
+            string[] linhas = File.ReadAllLines("examples/Acervo.txt");
 
-            for (int i = 0; i < linhas.Length; i += 5)
-            {
+            for (int i = 0; i < linhas.Length; i += 5){
                 string tipoItem = linhas[i];
-                int identificacao = int.Parse(linhas[i + 1]);
-                string titulo = linhas[i + 2];
-                string detalhes = linhas[i + 3];
-                int duracao = int.Parse(linhas[i + 4]);
-
-                ItemBiblioteca item;
+                ItemBiblioteca item = null!;
 
                 if (tipoItem == "DVD") {
+                    int identificacao = int.Parse(linhas[i + 1]);
+                    string titulo = linhas[i + 2];
+                    string detalhes = linhas[i + 3];
+                    int duracao = int.Parse(linhas[i + 4]);
+
                     item = new DVD(identificacao, titulo, detalhes, duracao);
-                    
-                } else if (tipoItem == "Livro") {
-                    string[] detalhesLivro = detalhes.Split(", ");
-                    string autor = detalhesLivro[0];
-                    string editora = detalhesLivro[1];
-                    int paginas = int.Parse(detalhesLivro[2]);
+                }
+                else if (tipoItem == "Livro") {
+                    int identificacao = int.Parse(linhas[i + 1]);
+                    string titulo = linhas[i + 2];
+                    string autor = linhas[i + 3];
+                    string editora = linhas[i + 4];
+                    int paginas = int.Parse(linhas[i + 5]);
 
                     item = new Livro(identificacao, titulo, autor, editora, paginas);
-
-                } else {
-                    string[] detalhesPeriodico = detalhes.Split(", ");
-                    string periodicidade = detalhesPeriodico[0];
-                    int numero = int.Parse(detalhesPeriodico[1]);
-                    int ano = int.Parse(detalhesPeriodico[2]);
+                    i++; // Pula uma linha extra para o formato do Livro
+                } else if (tipoItem == "Periódico") {
+                    int identificacao = int.Parse(linhas[i + 1]);
+                    string titulo = linhas[i + 2];
+                    string periodicidade = linhas[i + 3];
+                    int numero = int.Parse(linhas[i + 4]);
+                    int ano = int.Parse(linhas[i + 5]);
 
                     item = new Periodico(identificacao, titulo, periodicidade, numero, ano);
+                    i++; // Pula uma linha extra para o formato do Periódico
                 }
 
-                items.Add(item);
+                if (item != null) {
+                    items.Add(item);
+                }
             }
         }
     }

@@ -9,6 +9,8 @@ namespace trabalho_oop.classes.biblioteca.menu
 
         public MenuUsuarios(CadUsuarios cadUsuarios)
         {   
+            this.cadUsuarios = cadUsuarios;
+            
             Console.Clear();
             MenuTitulo("Ações para Usuários");
             Opcoes();
@@ -27,7 +29,6 @@ namespace trabalho_oop.classes.biblioteca.menu
                 }
             }
 
-            this.cadUsuarios = cadUsuarios;
             ExecutaOpcao(opcao);
         }
 
