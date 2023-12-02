@@ -4,24 +4,30 @@ namespace trabalho_oop.classes.biblioteca.menu
 {
     public class MenuEmprestimos : Menu
     {
-        public MenuEmprestimos()
+        private CadEmprestimos cadEmprestimos;
+
+        public MenuEmprestimos(CadEmprestimos cadEmprestimos)
         {
             Console.Clear();
-            MenuOpcoes.MenuTitulo("Ações para Empréstimos");
+            MenuTitulo("Ações para Empréstimos");
             Opcoes();
 
             string resposta = Console.ReadLine()!;
+            int opcao;
 
             if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
                 MenuOpcoes menu = new MenuOpcoes();
                 return;
             }
 
-            while(!int.TryParse(resposta, out int opcao)) {
+            while(!int.TryParse(resposta, out opcao)) {
                 if (opcao < 0 && opcao > 3) {
                     OpcaoInvalida();
                 }
             }    
+
+            this.cadEmprestimos = cadEmprestimos;
+            ExecutaOpcao(opcao);
         }
 
         public override void Opcoes()
@@ -39,7 +45,17 @@ namespace trabalho_oop.classes.biblioteca.menu
             switch (opcao)
             {
                 case 1:
-                    MenuUsuarios menuUsuarios = new MenuUsuarios();
+                    Emprestimo emprestimo = CadEmprestimo();
+                    cadEmprestimos.AddEmprestimo(emprestimo);
+
+                    Console.WriteLine("\n ✅ Empréstimo realizado com sucesso!");
+                    
+                    Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Usuários");
+                    Console.ReadKey();
+
+                    Console.Clear();
+                    Opcoes();
+
                     break;
                 case 2:
                     MenuItems menuItems = new MenuItems();
@@ -58,6 +74,17 @@ namespace trabalho_oop.classes.biblioteca.menu
             Thread.Sleep(2000);
             Console.Clear();
             Opcoes();
+        }
+
+        public Emprestimo CadEmprestimo()
+        {
+            Console.Clear();
+            MenuTitulo("Cadastro de Empréstimo");
+
+            Console.WriteLine("\nInforme a identificação do item a ser emprestado:");
+            string identificacao = Console.ReadLine()!;
+
+            
         }
     }
 }

@@ -1,11 +1,19 @@
-using trabalho_oop.interfaces;
+using trabalho_oop.classes.usuarios;
 
 namespace trabalho_oop.classes.biblioteca.menu
 {
     public class MenuOpcoes : Menu
     {
+        private Acervo acervo;
+        private CadUsuarios cadUsuarios;
+        private CadEmprestimos cadEmprestimos;
+
         public MenuOpcoes()
         {
+            acervo = new Acervo();
+            cadUsuarios = new CadUsuarios();
+            cadEmprestimos = new CadEmprestimos();
+
             Console.Clear();
 
             Logo();
@@ -45,13 +53,13 @@ namespace trabalho_oop.classes.biblioteca.menu
             switch (opcao)
             {
                 case 1:
-                    MenuUsuarios menuUsuarios = new MenuUsuarios();
+                    MenuUsuarios menuUsuarios = new MenuUsuarios(cadUsuarios);
                     break;
                 case 2:
-                    MenuItems menuItems = new MenuItems();
+                    MenuItems menuItems = new MenuItems(acervo);
                     break;
                 case 3:
-                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos();
+                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos(cadEmprestimos);
                     break;
                 default:
                     Logout();
