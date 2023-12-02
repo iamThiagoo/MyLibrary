@@ -12,7 +12,7 @@ namespace trabalho_oop.classes.biblioteca.produtos
         {
             this.identificacao = identificacao;
             this.titulo = titulo;
-            this.situacao = "disponivel";
+            this.situacao = "Disponivel";
         }
 
         public ItemBiblioteca (int identificacao, string titulo, string situacao)
@@ -36,10 +36,10 @@ namespace trabalho_oop.classes.biblioteca.produtos
             get { return situacao; } 
             set {
                 string[] situacoes = { 
-                    "emprestado", 
-                    "disponivel", 
-                    "bloqueado", 
-                    "atrasado" 
+                    "Emprestado", 
+                    "Disponivel", 
+                    "Bloqueado", 
+                    "Atrasado" 
                 };
 
                 if (situacoes.Contains(value)) {

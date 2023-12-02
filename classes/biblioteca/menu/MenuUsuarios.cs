@@ -14,22 +14,6 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.Clear();
             MenuTitulo("Ações para Usuários");
             Opcoes();
-
-            string resposta = Console.ReadLine()!;
-            int opcao;
-
-            if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
-                MenuOpcoes menu = new MenuOpcoes();
-                return;
-            }
-
-            while(!int.TryParse(resposta, out opcao)) {
-                if (opcao < 0 && opcao > 3) {
-                    OpcaoInvalida();
-                }
-            }
-
-            ExecutaOpcao(opcao);
         }
 
         public override void Opcoes()
@@ -40,45 +24,52 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.WriteLine("2 - Listar todos os usuários cadastrados");
             Console.WriteLine("3 - Excluir usuário");
             Console.WriteLine("V - Voltar para Menu Principal");
+
+            string resposta = Console.ReadLine()!;
+            int opcao;
+
+            if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
+                MenuOpcoes menu = new MenuOpcoes();
+                return;
+            }
+
+            if (!int.TryParse(resposta, out opcao) || (opcao < 1 || opcao > 3)) {
+                OpcaoInvalida();
+                return;
+            }
+
+            ExecutaOpcao(opcao);
         }
+
 
         public override void ExecutaOpcao(int opcao)
         {
-            switch (opcao)
-            {
+            switch (opcao){
                 case 1:
                     Usuario usuario = CadUsuario();
                     cadUsuarios.AddUser(usuario);
                     
                     Console.WriteLine("\n ✅ Usuário adicionado com sucesso!");
-                    
-                    Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Usuários");
-                    Console.ReadKey();
-
-                    Console.Clear();
-                    Opcoes();
-
                     break;
                 case 2:
                     ListaUsuarios();
-
-                    Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Usuários");
-                    Console.ReadKey();
-
-                    Console.Clear();
-                    Opcoes();
-
                     break;
                 case 3:
                     break;
                 default:
                     break;
             }
+
+            Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Usuários");
+            Console.ReadKey();
+
+            Console.Clear();
+            Opcoes();
         }
 
         public override void OpcaoInvalida()
         {
-            Console.WriteLine("\nOpção inválida. Tente novamente:");
+            Console.WriteLine("\nOpção inválida. Tente novamente!");
             Thread.Sleep(2000);
             Console.Clear();
             Opcoes();
@@ -147,10 +138,10 @@ namespace trabalho_oop.classes.biblioteca.menu
                 {
                     Usuario usuario = cadUsuarios.GetUserByIndex(i);
     
-                    Console.WriteLine($"\nMatrícula: {usuario.Matricula}");
-                    Console.WriteLine($"\nNome do Usuário: {usuario.Nome}");
-                    Console.WriteLine($"\nCurso: {usuario.Curso}");
-                    Console.WriteLine($"\nEndereço: {usuario.Endereco}");
+                    Console.WriteLine($"\nNome: {usuario.Nome}");
+                    Console.WriteLine($"Matrícula: {usuario.Matricula}");
+                    Console.WriteLine($"Curso: {usuario.Curso}");
+                    Console.WriteLine($"Endereço: {usuario.Endereco}");
                 }
             } else {
                 Console.WriteLine("\nNenhum usuário cadastrado!");

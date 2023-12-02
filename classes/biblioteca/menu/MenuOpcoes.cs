@@ -19,23 +19,6 @@ namespace trabalho_oop.classes.biblioteca.menu
             Logo();
             MenuTitulo("Seja bem-vindo ao MyLibrary");
             Opcoes();
-
-            while (true) {
-                string resposta = Console.ReadLine()!;
-
-                if (int.TryParse(resposta, out int opcao)) {
-                    if (opcao >= 0 && opcao <= 3) {
-                        ExecutaOpcao(opcao);
-                        break;
-                    }
-                    else {
-                        OpcaoInvalida();
-                    }
-                }
-                else {
-                    OpcaoInvalida();
-                }
-            }
         }
 
         public override void Opcoes()
@@ -46,6 +29,16 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.WriteLine("2 - Listar ações para itens");
             Console.WriteLine("3 - Listar ações para Empréstimos");
             Console.WriteLine("0 - Logout/Sair");
+
+            string resposta = Console.ReadLine()!;
+            int opcao;
+
+            while(!int.TryParse(resposta, out opcao) || (opcao < 0 || opcao > 3)) {
+                OpcaoInvalida();
+                return;
+            }
+
+            ExecutaOpcao(opcao);
         }
 
         public override void ExecutaOpcao(int opcao)
@@ -69,7 +62,7 @@ namespace trabalho_oop.classes.biblioteca.menu
 
         public override void OpcaoInvalida()
         {
-            Console.WriteLine("\nOpção inválida. Tente novamente:");
+            Console.WriteLine("\nOpção inválida. Tente novamente!");
             Thread.Sleep(2000);
             Console.Clear();
             Opcoes();

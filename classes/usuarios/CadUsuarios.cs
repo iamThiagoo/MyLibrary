@@ -46,40 +46,42 @@ namespace trabalho_oop.classes.usuarios
         private void AddUsuarios()
         {
             string[] linhas = File.ReadAllLines("examples/Usuarios.txt");
+            List<string> userData = new List<string>();
 
-            for (int i = 0; i < linhas.Length; i += 4) {
-                string[] dadosUsuario = linhas[i].Split(", ");
-                if (dadosUsuario.Length < 4) {
-                    Console.WriteLine($"Dados incompletos para o usuário na linha {i + 1}");
+            foreach (string linha in linhas) {
+                if (string.IsNullOrWhiteSpace(linha)){
+                    if (userData.Count == 10) {
+                        ProcessaUsuario(userData);
+                        userData.Clear();
+                    }
                     continue;
                 }
-
-                string nome = dadosUsuario[0];
-                string matricula = dadosUsuario[1];
-                string curso = dadosUsuario[2];
-
-                string[] dadosEndereco = linhas[i + 1].Split(", ");
-
-                if (dadosEndereco.Length < 7)
-                {
-                    // Verifica se os dados de endereço estão completos
-                    Console.WriteLine($"Dados de endereço incompletos para o usuário: {nome}");
-                    continue;
-                }
-
-                string rua = dadosEndereco[0];
-                int numero = int.Parse(dadosEndereco[1]);
-                string complemento = dadosEndereco[2];
-                string bairro = dadosEndereco[3];
-                string cidade = dadosEndereco[4];
-                string uf = dadosEndereco[5];
-                string cep = dadosEndereco[6];
-
-                Endereco endereco = new Endereco(rua, numero, complemento, bairro, cidade, uf, cep);
-
-                Usuario usuario = new Usuario(nome, endereco, matricula, curso);
-                usuarios.Add(usuario);
+                userData.Add(linha);
+            }
+            
+            if (userData.Count == 10) {
+                ProcessaUsuario(userData);
             }
         }
+
+        private void ProcessaUsuario(List<string> userArray)
+        {
+            string nome = userArray[0];
+            string rua = userArray[1];
+            int numero = int.Parse(userArray[2]);
+            string complemento = userArray[3];
+            string bairro = userArray[4];
+            string cidade = userArray[5];
+            string uf = userArray[6];
+            string cep = userArray[7];
+            string matricula = userArray[8];
+            string curso = userArray[9];
+
+            Endereco endereco = new Endereco(rua, numero, complemento, bairro, cidade, uf, cep);
+
+            Usuario usuario = new Usuario(nome, endereco, matricula, curso);
+            usuarios.Add(usuario);
+        }
+
     }
 }

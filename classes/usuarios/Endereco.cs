@@ -65,33 +65,23 @@ namespace trabalho_oop.classes.usuarios
         public string Uf
         {
             get { return uf; }
-            set {
-                if (value.Length == 2) {
-                    uf = value;
-                }
-            }
+            set { uf = value; }
         }
 
         public string Cep
         {
             get { return cep; }
-            set {
-                string cepRegex = @"^\d{5}-\d{3}$";
-
-                if (Regex.IsMatch(value, cepRegex)) {
-                    cep = value;
-                }
-            }
+            set { cep = value; }
         }
 
         public override string ToString()
         {
-            return $"Rua: {rua};" +
-                   $"Numero: {numero};" +
-                   $"Complemento: {complemento};" +
-                   $"Bairro: {bairro};" +
-                   $"Cidade: {cidade};" +
-                   $"Uf: {uf};" +
+            return $"Rua: {rua}, " +
+                   $"Numero: {numero}, " +
+                   $"Complemento: {complemento}, " +
+                   $"Bairro: {bairro}, " +
+                   $"Cidade: {cidade}, " +
+                   $"Uf: {uf}, " +
                    $"Cep: {cep}";
         }
     }

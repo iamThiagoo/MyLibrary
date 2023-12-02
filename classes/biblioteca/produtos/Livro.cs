@@ -39,32 +39,32 @@ namespace trabalho_oop.classes.biblioteca.produtos
 
         public bool Disponivel()
         {
-            return Situacao == "disponivel" ? true : false;
+            return Situacao == "Disponivel" ? true : false;
         }
 
         public bool Emprestado()
         {
-            return Situacao == "emprestado" ? true : false;
+            return Situacao == "Emprestado" ? true : false;
         }
 
         public bool Bloqueado()
         {
-            return Situacao == "bloqueado" ? true : false;
+            return Situacao == "Bloqueado" ? true : false;
         }
 
         public bool Atrasado()
         {
-            return Situacao == "atrasado" ? true : false;
+            return Situacao == "Atrasado" ? true : false;
         }
 
         public override string ToString()
         {
-            return $"Identificação:{Identificacao}, " + 
-                   $"Título:{Titulo}, " + 
-                   $"Autor={autor}, " +
-                   $"Editora: {editora}, " +  
-                   $"Páginas: {paginas}, " +
-                   $"Status do Item: {Situacao}";
+            return $"Identificação: {Identificacao} " + 
+                   $"\nTítulo: {Titulo}" + 
+                   $"\nAutor: {autor}" +
+                   $"\nEditora: {editora}" +  
+                   $"\nPáginas: {paginas}" +
+                   $"\nStatus do Item: {Situacao}";
         }
     }
 }

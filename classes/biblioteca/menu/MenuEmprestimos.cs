@@ -13,22 +13,6 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.Clear();
             MenuTitulo("Ações para Empréstimos");
             Opcoes();
-
-            string resposta = Console.ReadLine()!;
-            int opcao;
-
-            if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
-                MenuOpcoes menu = new MenuOpcoes();
-                return;
-            }
-
-            while(!int.TryParse(resposta, out opcao)) {
-                if (opcao < 0 && opcao > 3) {
-                    OpcaoInvalida();
-                }
-            }    
-
-            ExecutaOpcao(opcao);
         }
 
         public override void Opcoes()
@@ -39,6 +23,21 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.WriteLine("2 - Listar todos os Empréstimos (ordenado por Data de Devolução)");
             Console.WriteLine("3 - Registrar devolução de Empréstimo");
             Console.WriteLine("V - Voltar para Menu Principal");
+
+            string resposta = Console.ReadLine()!;
+            int opcao;
+
+            if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
+                MenuOpcoes menu = new MenuOpcoes();
+                return;
+            }
+
+            while(!int.TryParse(resposta, out opcao) || (opcao < 0 && opcao > 3)) {
+                OpcaoInvalida();
+                return;
+            }    
+
+            ExecutaOpcao(opcao);
         }
 
         public override void ExecutaOpcao(int opcao)

@@ -14,22 +14,6 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.Clear();
             MenuTitulo("Ações para Items");
             Opcoes();
-
-            string resposta = Console.ReadLine()!;
-            int opcao;
-
-            if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
-                MenuOpcoes menu = new MenuOpcoes();
-                return;
-            }
-
-            while (!int.TryParse(resposta, out opcao)) {
-                if (opcao < 0 && opcao > 3) {
-                    OpcaoInvalida();
-                }
-            }
-
-            ExecutaOpcao(opcao);
         }
 
         public override void Opcoes()
@@ -42,6 +26,21 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.WriteLine("4 - Listar todos os DVD's (com status de: Disponível, Emprestado, Atrasado e Bloqueado)");
             Console.WriteLine("5 - Excluir um item");
             Console.WriteLine("V - Voltar para Menu Principal");
+
+            string resposta = Console.ReadLine()!;
+            int opcao;
+
+            if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
+                MenuOpcoes menu = new MenuOpcoes();
+                return;
+            }
+
+            while (!int.TryParse(resposta, out opcao) || (opcao < 0 || opcao > 5) ) {
+                OpcaoInvalida();
+                return;
+            }
+
+            ExecutaOpcao(opcao);
         }
 
         public override void ExecutaOpcao(int opcao)
@@ -59,7 +58,7 @@ namespace trabalho_oop.classes.biblioteca.menu
                     ListaItems("Periódicos");
                     break;
                 case 4:
-                    ListaItems("DVD");
+                    ListaItems("DVDs");
                     break;
                 case 5:
                     break;
@@ -189,16 +188,29 @@ namespace trabalho_oop.classes.biblioteca.menu
 
         public void ListaItems(string tipoItem)
         {
+            Console.Clear();
+            MenuTitulo($"Lista de {tipoItem} cadastrados");
+
             if (acervo.Count() > 0) {
-                
                 for(int i = 0; i < acervo.Count(); i++) {
                     ItemBiblioteca item = acervo.GetItemByIndex(i);
                 
                     if (
-                        (tipoItem == "DVD" && item.GetType() == typeof(DVD)) ||
-                        (tipoItem == "Livro" && item.GetType() == typeof(Livro)) ||
-                        (tipoItem == "Periodico" && item.GetType() == typeof(Periodico))
+                        (tipoItem == "DVDs" && item.GetType() == typeof(DVD)) ||
+                        (tipoItem == "Livros" && item.GetType() == typeof(Livro)) ||
+                        (tipoItem == "Periódicos" && item.GetType() == typeof(Periodico))
                     ){
+                        string tipoItemMessage;
+
+                        if (tipoItem == "DVDs") {
+                            tipoItemMessage = "Item: DVD 📀";
+                        } else if (tipoItem == "Livros") {
+                            tipoItemMessage = "Item: Livro 📖";
+                        } else {
+                            tipoItemMessage = "Item: Periódico 📰";
+                        }
+
+                        Console.WriteLine($"\n{tipoItemMessage}");
                         Console.WriteLine(item.ToString());
                     }
                 }
