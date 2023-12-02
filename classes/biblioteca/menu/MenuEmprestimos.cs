@@ -58,10 +58,8 @@ namespace trabalho_oop.classes.biblioteca.menu
 
                     break;
                 case 2:
-                    MenuItems menuItems = new MenuItems();
                     break;
                 case 3:
-                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos();
                     break;
                 default:
                     break;
@@ -83,8 +81,6 @@ namespace trabalho_oop.classes.biblioteca.menu
 
             Console.WriteLine("\nInforme a identificação do item a ser emprestado:");
             string identificacao = Console.ReadLine()!;
-
-            
         }
     }
 }

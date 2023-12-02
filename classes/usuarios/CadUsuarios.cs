@@ -31,11 +31,13 @@ namespace trabalho_oop.classes.usuarios
 
         public bool DeleteUserByMatricula(string matricula)
         {
-            Usuario usuario = usuarios.FirstOrDefault(usuario => usuario.Matricula == matricula);
+            if (usuarios.Count > 0) {
+                Usuario usuario = usuarios.FirstOrDefault(usuario => usuario.Matricula == matricula);
 
-            if (usuario != null) {
-                usuarios.Remove(usuario);
-                return true;
+                if (usuario != null) {
+                    usuarios.Remove(usuario);
+                    return true;
+                }
             }
 
             return false;

@@ -39,36 +39,38 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.WriteLine("2 - Listar todos os Livros (com status de: Disponível, Emprestado, Atrasado e Bloqueado)");
             Console.WriteLine("3 - Listar todos os Períodicos (com status de: Disponível, Emprestado, Atrasado e Bloqueado)");
             Console.WriteLine("4 - Listar todos os DVD's (com status de: Disponível, Emprestado, Atrasado e Bloqueado)");
-            Console.WriteLine("4 - Excluir um item");
+            Console.WriteLine("5 - Excluir um item");
             Console.WriteLine("V - Voltar para Menu Principal");
         }
 
         public override void ExecutaOpcao(int opcao)
         {
-            switch (opcao)
-            {
+            switch (opcao) {
                 case 1:
                     ItemBiblioteca item = CadItem();
                     acervo.AddItem(item);
-                    
                     Console.WriteLine("\n ✅ Item adicionado ao Acervo com sucesso!");
-                    
-                    Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Usuários");
-                    Console.ReadKey();
-
-                    Console.Clear();
-                    Opcoes();
-
                     break;
                 case 2:
-                    MenuItems menuItems = new MenuItems();
+                    ListaItems("Livros");
                     break;
                 case 3:
-                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos();
+                    ListaItems("Periódicos");
+                    break;
+                case 4:
+                    ListaItems("DVD");
+                    break;
+                case 5:
                     break;
                 default:
                     break;
             }
+
+            Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Items");
+            Console.ReadKey();
+
+            Console.Clear();
+            Opcoes();
         }
 
         public override void OpcaoInvalida()
@@ -118,7 +120,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             MenuTitulo("Cadastro de Item - Livro");
 
             Console.WriteLine("\nInsira uma identificação ao item:");
-            string identificacao = Console.ReadLine()!;
+            int identificacao =EntradaDados.RetorneInteiro();
 
             Console.WriteLine("\nInsira o título do item:");
             string titulo = Console.ReadLine()!;
@@ -130,7 +132,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             string editora = Console.ReadLine()!;
 
             Console.WriteLine("\nInsira o número de páginas:");
-            string numeroPaginas = Console.ReadLine()!;
+            int numeroPaginas = EntradaDados.RetorneInteiro();
 
             Livro livro = new Livro(identificacao, titulo, autor, editora, numeroPaginas);
 
@@ -143,7 +145,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             MenuTitulo("Cadastro de Item - DVD");
 
             Console.WriteLine("\nInsira uma identificação ao item:");
-            string identificacao = Console.ReadLine()!;
+            int identificacao = EntradaDados.RetorneInteiro()!;
 
             Console.WriteLine("\nInsira o título do item:");
             string titulo = Console.ReadLine()!;
@@ -152,7 +154,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             string assunto = Console.ReadLine()!;
 
             Console.WriteLine("\nInsira a duração do item:");
-            string duracao = Console.ReadLine()!;
+            int duracao = EntradaDados.RetorneInteiro();
 
             DVD dvd = new DVD(identificacao, titulo, assunto, duracao);
 
@@ -165,7 +167,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             MenuTitulo("Cadastro de Item - Revista/Periódico");
 
             Console.WriteLine("\nInsira uma identificação ao item:");
-            string identificacao = Console.ReadLine()!;
+            int identificacao = EntradaDados.RetorneInteiro();
 
             Console.WriteLine("\nInsira o título do item:");
             string titulo = Console.ReadLine()!;
@@ -174,14 +176,35 @@ namespace trabalho_oop.classes.biblioteca.menu
             string periodicidade = Console.ReadLine()!;
 
             Console.WriteLine("\nInsira o número do item:");
-            string numero = Console.ReadLine()!;
+            int numero = EntradaDados.RetorneInteiro();
 
             Console.WriteLine("\nInsira o ano do item:");
-            string ano = Console.ReadLine()!;
+            int ano = EntradaDados.RetorneInteiro();
 
             Periodico periodico = new Periodico(identificacao, titulo, periodicidade, numero, ano);
 
             return periodico;
+        }
+
+        public void ListaItems(string tipoItem)
+        {
+            if (acervo.Count() > 0) {
+                
+                for(int i = 0; i < acervo.Count(); i++) {
+                    ItemBiblioteca item = acervo.GetItemByIndex(i);
+                
+                    if (
+                        (tipoItem == "DVD" && item.GetType() == typeof(DVD)) ||
+                        (tipoItem == "Livro" && item.GetType() == typeof(Livro)) ||
+                        (tipoItem == "Periodico" && item.GetType() == typeof(Periodico))
+                    ){
+                        Console.WriteLine(item.ToString());
+                    }
+                }
+
+            } else {
+                Console.WriteLine("\nNenhum item adicionado!");
+            }
         }
     }
 }

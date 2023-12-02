@@ -27,16 +27,18 @@ namespace trabalho_oop.classes.biblioteca
 
         public int Count()
         {
-            return items.Count();
+            return items.Count;
         }
 
         public bool DeleteByIdentificacao(int identificacao)
         {
-            ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao);
+            if (items.Count > 0) {
+                ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao);
 
-            if (item != null) {
-                items.Remove(item);
-                return true;
+                if (item != null) {
+                    items.Remove(item);
+                    return true;
+                }
             }
 
             return false;

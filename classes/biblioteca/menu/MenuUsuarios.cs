@@ -69,7 +69,6 @@ namespace trabalho_oop.classes.biblioteca.menu
 
                     break;
                 case 3:
-                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos();
                     break;
                 default:
                     break;
@@ -98,7 +97,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             string ruaResidencia = Console.ReadLine()!;
 
             Console.WriteLine("\nInsira o número da residência do usuário:");
-            string numeroResidencia = Console.ReadLine()!;
+            int numeroResidencia = EntradaDados.RetorneInteiro()!;
 
             Console.WriteLine("\nInsira o complemento da residência do usuário:");
             string complementoResidencia = Console.ReadLine()!;
@@ -142,14 +141,18 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.Clear();
             MenuTitulo("Todos os Usuários");
 
-            for(int i = 0; i < cadUsuarios.Count(); i++)
-            {
-                Usuario usuario = cadUsuarios.GetUserByIndex(i);
- 
-                Console.WriteLine($"\nMatrícula: {usuario.Matricula}");
-                Console.WriteLine($"\nNome do Usuário: {usuario.Nome}");
-                Console.WriteLine($"\nCurso: {usuario.Curso}");
-                Console.WriteLine($"\nEndereço: {usuario.Endereco}");
+            if (cadUsuarios.Count() > 0) {
+                for(int i = 0; i < cadUsuarios.Count(); i++)
+                {
+                    Usuario usuario = cadUsuarios.GetUserByIndex(i);
+    
+                    Console.WriteLine($"\nMatrícula: {usuario.Matricula}");
+                    Console.WriteLine($"\nNome do Usuário: {usuario.Nome}");
+                    Console.WriteLine($"\nCurso: {usuario.Curso}");
+                    Console.WriteLine($"\nEndereço: {usuario.Endereco}");
+                }
+            } else {
+                Console.WriteLine("\nNenhum usuário cadastrado!");
             }
         }
     }

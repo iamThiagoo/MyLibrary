@@ -2,7 +2,7 @@ namespace trabalho_oop.classes.biblioteca.menu
 {
     public class EntradaDados
     {
-        public static int RetorneInteiro(string mensagem)
+        public static int RetorneInteiro()
         {
             string aux;
             int n = 0;
@@ -10,7 +10,6 @@ namespace trabalho_oop.classes.biblioteca.menu
 
             do {
                 ok = true;
-                Console.WriteLine(mensagem);
                 aux = Console.ReadLine()!;
                 
                 if (!int.TryParse(aux, out n)) {
@@ -25,7 +24,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             return n;
         }
 
-        public static int RetorneIntei(string mensagem, int min, int max)
+        public static int RetorneInteiro(int min, int max)
         {
             string aux;
             int n = 0;
@@ -33,7 +32,6 @@ namespace trabalho_oop.classes.biblioteca.menu
 
             do {
                 ok = true;
-                Console.WriteLine(mensagem);
                 aux = Console.ReadLine()!;
 
                 if (!int.TryParse(aux, out n)) {
@@ -52,7 +50,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             return n;
         }
 
-        public static double RetorneDouble(string mensagem)
+        public static double RetorneDouble()
         {
             string aux;
             double n = 0;
@@ -60,7 +58,6 @@ namespace trabalho_oop.classes.biblioteca.menu
 
             do {
                 ok = true;
-                Console.WriteLine(mensagem);
                 aux = Console.ReadLine()!;
                 if (!double.TryParse(aux, out n))
                 {
@@ -74,7 +71,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             return n;
         }
 
-        public static char RetorneChar(string mensagem)
+        public static char RetorneChar()
         {
             string aux;
             char c = ' ';
@@ -82,7 +79,6 @@ namespace trabalho_oop.classes.biblioteca.menu
             
             do {
                 ok = true;
-                Console.WriteLine(mensagem);
                 aux = Console.ReadLine()!;
 
                 if (!char.TryParse(aux, out c)) {
@@ -96,10 +92,9 @@ namespace trabalho_oop.classes.biblioteca.menu
             return c;
         }
 
-        public static string RetorneString(string mensagem)
+        public static string RetorneString()
         {
             string aux;
-            Console.WriteLine(mensagem);
             aux = Console.ReadLine()!;
             return aux;
         }
