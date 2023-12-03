@@ -8,22 +8,20 @@ namespace trabalho_oop.classes.biblioteca
     {
         private int identificacao;
         private Usuario usuario;
-        private ItemBiblioteca itemBiblioteca;
+        private ItemBiblioteca item;
         private DateTime dataEmprestimo;
         private DateTime dataDevolucao;
+        private CadEmprestimos cadEmprestimos;
 
         public Emprestimo(
-            int identificacao, 
-            Usuario usuario,
-            ItemBiblioteca itemBiblioteca,
-            DateTime dataEmprestimo,
-            DateTime dataDevolucao
+            int identificacao,
+            CadEmprestimos cadEmprestimos
         ) {
             this.identificacao = identificacao;
-            this.usuario = usuario;
-            this.itemBiblioteca = itemBiblioteca;
-            this.dataEmprestimo = dataEmprestimo;
-            this.dataDevolucao = dataDevolucao;
+            this.usuario = null!;
+            this.item = null!;
+            this.dataEmprestimo = DateTime.Now;
+            this.cadEmprestimos = cadEmprestimos;
         }
 
         public int Identificacao { 
@@ -36,9 +34,9 @@ namespace trabalho_oop.classes.biblioteca
             set { usuario = value; } 
         }
 
-        public ItemBiblioteca ItemBiblioteca { 
-            get { return itemBiblioteca; }
-            set { itemBiblioteca = value; }
+        public ItemBiblioteca Item { 
+            get { return item; }
+            set { item = value; }
         }
 
         public DateTime DataEmprestimo { 
@@ -52,13 +50,18 @@ namespace trabalho_oop.classes.biblioteca
         }
 
         public void Emprestar(Usuario usuario, ItemBiblioteca item, int prazo) 
-        {
-
+        {            
+            this.usuario = usuario;
+            this.item = item;
+            dataDevolucao = dataEmprestimo.AddDays(prazo);
+            item.Situacao = "Emprestado";
+            cadEmprestimos.AddEmprestimo(this);
         }
 
         public void Retornar() 
         {
-
+            item.Situacao = "Disponível";
+            cadEmprestimos.DeleteEmprestimo(this);
         }
 
         public override string ToString()
@@ -66,13 +69,13 @@ namespace trabalho_oop.classes.biblioteca
             string dataEmprestimoFormat = dataEmprestimo.ToString("d/M/Y");
             string dataDevolucaoFormat = dataEmprestimo.ToString("d/M/y"); 
 
-            return $"Identificação: {identificacao}, " +
-                   $"Usuário: {usuario.Nome}, " +
-                   $"Matrícula do Usuário: {usuario.Matricula}, " +
-                   $"Item: {itemBiblioteca.Titulo}, " +
-                   $"Data de Empréstimo: {dataEmprestimoFormat}, " +
-                   $"Data de Devolução: {dataDevolucaoFormat}," +
-                   $"Status do Item: {itemBiblioteca.Situacao}";
+            return $"\nIdentificação: {identificacao}" +
+                   $"\nItem: {item.Titulo}" +
+                   $"\nUsuário: {usuario.Nome} " +
+                   $"\nMatrícula do Usuário: {usuario.Matricula} " +
+                   $"\nData de Empréstimo: {dataEmprestimoFormat}, " +
+                   $"\nData de Devolução: {dataDevolucaoFormat}," +
+                   $"\nStatus do Item: {item.Situacao}";
         }
     }
 }

@@ -43,9 +43,14 @@ namespace trabalho_oop.classes.usuarios
             return false;
         }
 
+        public Usuario GetUserByMatricula(string matricula)
+        {
+            return usuarios.FirstOrDefault(usuario => usuario.Matricula == matricula)!;
+        }
+
         private void AddUsuarios()
         {
-            string[] linhas = File.ReadAllLines("examples/Usuarios.txt");
+            string[] linhas = File.ReadAllLines("exemplos/Usuarios.txt");
             List<string> userData = new List<string>();
 
             foreach (string linha in linhas) {

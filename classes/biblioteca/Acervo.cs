@@ -1,12 +1,9 @@
-using System;
-using System.IO;
 using trabalho_oop.classes.biblioteca.produtos;
 
 namespace trabalho_oop.classes.biblioteca
 {
     public class Acervo
     {
-        private const ItemBiblioteca value = null!;
         private List<ItemBiblioteca> items;
 
         public Acervo ()
@@ -36,7 +33,7 @@ namespace trabalho_oop.classes.biblioteca
             if (items.Count > 0) {
                 ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao)!;
 
-                if (item != null) {
+                if (item != null && item.Situacao == "Disponivel") {
                     items.Remove(item);
                     return true;
                 }
@@ -45,9 +42,27 @@ namespace trabalho_oop.classes.biblioteca
             return false;
         }
 
+        public bool ItemEstaDisponivel(int identificacao)
+        {
+            if (items.Count > 0) {
+                ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao)!;
+
+                if (item != null && item.Situacao == "Disponivel") {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public ItemBiblioteca GetItemByIdentificacao(int identificacao)
+        {
+            return items.FirstOrDefault(item => item.Identificacao == identificacao)!;
+        }
+
         public void AddItems()
         {
-            string[] linhas = File.ReadAllLines("examples/Acervo.txt");
+            string[] linhas = File.ReadAllLines("exemplos/Acervo.txt");
             int lineIndex = 0;
 
             while (lineIndex < linhas.Length)

@@ -1,4 +1,5 @@
 using System;
+using trabalho_oop.classes.biblioteca.produtos;
 
 namespace trabalho_oop.classes.biblioteca
 {
@@ -26,14 +27,28 @@ namespace trabalho_oop.classes.biblioteca
             return emprestimos.Count;
         }
 
+        public List<Emprestimo> GetEmprestimosOrdenados()
+        {
+            return emprestimos.OrderBy(emprestimo => emprestimo.DataDevolucao).ToList();
+        }
+
         public Emprestimo GetEmprestimoByIndex(int index)
         {
             Emprestimo usuario = emprestimos[index];
             return usuario;
         }
 
+        public Emprestimo GetEmprestimoByIdentificacao(int identificacao)
+        {
+            return emprestimos.FirstOrDefault(emprestimo => emprestimo.Identificacao == identificacao)!;
+        }
+
         public void Atrasos() {
-           // Implementar 
+            foreach(Emprestimo emprestimo in emprestimos) {
+                if (emprestimo.DataDevolucao < DateTime.Now) {
+                    emprestimo.Item.Situacao = "Atrasado";
+                }
+            }
         }
     }
 }

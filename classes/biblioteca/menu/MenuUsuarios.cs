@@ -81,38 +81,38 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.Clear();
             MenuTitulo("Cadastro de Usuário");
 
-            Console.WriteLine("\nInsira o nome do Usuário:");
+            Console.WriteLine("\nInforme o nome do Usuário:");
             string nome = Console.ReadLine()!;
 
             Console.WriteLine("\nInformações de Endereço do Usuário");
 
-            Console.WriteLine("\nInsira a rua do usuário:");
+            Console.WriteLine("\nInforme a rua do usuário:");
             string ruaResidencia = Console.ReadLine()!;
 
-            Console.WriteLine("\nInsira o número da residência do usuário:");
+            Console.WriteLine("\nInforme o número da residência do usuário:");
             int numeroResidencia = EntradaDados.RetorneInteiro()!;
 
-            Console.WriteLine("\nInsira o complemento da residência do usuário:");
+            Console.WriteLine("\nInforme o complemento da residência do usuário:");
             string complementoResidencia = Console.ReadLine()!;
 
-            Console.WriteLine("\nInsira o bairro da residência do usuário:");
+            Console.WriteLine("\nInforme o bairro da residência do usuário:");
             string bairroResidencia = Console.ReadLine()!;
 
-            Console.WriteLine("\nInsira a cidade da residência do usuário:");
+            Console.WriteLine("\nInforme a cidade da residência do usuário:");
             string cidadeResidencia = Console.ReadLine()!;
 
-            Console.WriteLine("\nInsira a UF da residência do usuário:");
+            Console.WriteLine("\nInforme a UF da residência do usuário:");
             string ufResidencia = Console.ReadLine()!;
 
-            Console.WriteLine("\nInsira o CEP da residência do usuário:");
+            Console.WriteLine("\nInforme o CEP da residência do usuário:");
             string cepResidencia = Console.ReadLine()!;
 
             Console.WriteLine("\nDefina os campos de matrícula e Curso");
 
-            Console.WriteLine("\nInsira a matrícula do usuário:");
+            Console.WriteLine("\nInforme a matrícula do usuário:");
             string matricula = Console.ReadLine()!;
 
-            Console.WriteLine("\nInsira o curso do usuário:");
+            Console.WriteLine("\nInforme o curso do usuário:");
             string curso = Console.ReadLine()!;
 
             Endereco endereco = new Endereco(ruaResidencia, 

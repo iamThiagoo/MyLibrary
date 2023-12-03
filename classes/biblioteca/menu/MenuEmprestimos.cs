@@ -1,14 +1,25 @@
+using trabalho_oop.classes.biblioteca.produtos;
+using trabalho_oop.classes.usuarios;
+
 namespace trabalho_oop.classes.biblioteca.menu
 {
     public class MenuEmprestimos : Menu
     {
         private CadEmprestimos cadEmprestimos;
+        private CadUsuarios cadUsuarios;
         private MenuOpcoes menuOpcoes;
+        private Acervo acervo;
 
-        public MenuEmprestimos(CadEmprestimos cadEmprestimos, MenuOpcoes menuOpcoes)
-        {
+        public MenuEmprestimos(
+            CadEmprestimos cadEmprestimos, 
+            CadUsuarios cadUsuarios, 
+            Acervo acervo, 
+            MenuOpcoes menuOpcoes
+        ){
             this.cadEmprestimos = cadEmprestimos;
+            this.cadUsuarios = cadUsuarios;
             this.menuOpcoes = menuOpcoes;
+            this.acervo = acervo;
 
             Opcoes();
         }
@@ -43,7 +54,33 @@ namespace trabalho_oop.classes.biblioteca.menu
 
         public override void ExecutaOpcao(int opcao)
         {
-            Console.WriteLine("oi");
+            switch (opcao)
+            {
+                case 1:
+                    Emprestimo? emprestimo = CadEmprestimo();
+                    if (emprestimo != null) {
+                        Console.WriteLine("\n ✅ Empréstimo realizado com sucesso!");
+                    }
+                    break;
+                case 2:
+                    cadEmprestimos.Atrasos(); // Atualiza possíveis atrasos
+                    ListaEmprestimos();
+                    break;
+                case 3:
+                    if(DevolucaoEmprestimo()) {
+                        Console.WriteLine("\n ✅ Devolução realizada com sucesso!");
+                    } else {
+                        Console.WriteLine("\n ❌ Empréstimo não encontrado!");
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Items");
+            Console.ReadKey();
+
+            Opcoes();
         }
 
         public override void OpcaoInvalida()
@@ -53,13 +90,67 @@ namespace trabalho_oop.classes.biblioteca.menu
             Opcoes();
         }
 
-        //public Emprestimo CadEmprestimo()
-        //{
-        //    Console.Clear();
-        //    MenuTitulo("Cadastro de Empréstimo");
+        public Emprestimo? CadEmprestimo()
+        {
+            Console.Clear();
+            MenuTitulo("Cadastro de Empréstimo");
 
-        //    Console.WriteLine("\nInforme a identificação do item a ser emprestado:");
-        //    string identificacao = Console.ReadLine()!;
-        //}
+            Console.WriteLine("\nInforme a identificação do item:");
+            int itemIdentificacao = EntradaDados.RetorneInteiro();
+            ItemBiblioteca item = acervo.GetItemByIdentificacao(itemIdentificacao);
+
+            if (item == null || !acervo.ItemEstaDisponivel(itemIdentificacao)) {
+                Console.WriteLine("\n ❌ O item não existe ou não está disponível para empréstimo!");
+                return null;
+            }
+
+            Console.WriteLine("\nInforme a matrícula do usuário:");
+            string usuarioMatricula = Console.ReadLine()!;
+
+            Usuario usuario = cadUsuarios.GetUserByMatricula(usuarioMatricula);
+            if (usuario == null) {
+                Console.WriteLine("\n ❌ O usuário não existe!");
+                return null;
+            }
+
+            Console.WriteLine("\nInforme uma identificação para o empréstimo:");
+            int identificacaoEmprestimo = EntradaDados.RetorneInteiro();
+
+            Emprestimo emprestimo = new Emprestimo(identificacaoEmprestimo, cadEmprestimos);
+            emprestimo.Emprestar(usuario, item, item.getPrazoEntrega());
+
+            return emprestimo;
+        }
+
+        public void ListaEmprestimos()
+        {
+            Console.Clear();
+            MenuTitulo("Lista de Empréstimos");
+
+            if (cadEmprestimos.Count() > 0) {
+                foreach (Emprestimo emprestimo in cadEmprestimos.GetEmprestimosOrdenados()) {
+                    Console.WriteLine(emprestimo.ToString());
+                }
+            } else {
+                Console.WriteLine("\nNenhum empréstimo realizado!");
+            }
+        }
+
+        public bool DevolucaoEmprestimo()
+        {
+            Console.Clear();
+            MenuTitulo("Devolução de Empréstimo");
+
+            Console.WriteLine("\nInforme a identificação do item:");
+            int emprestimoIdentificacao = EntradaDados.RetorneInteiro();
+            Emprestimo emprestimo = cadEmprestimos.GetEmprestimoByIdentificacao(emprestimoIdentificacao);
+
+            if (emprestimo != null) {
+                emprestimo.Retornar();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

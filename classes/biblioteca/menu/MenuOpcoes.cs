@@ -53,7 +53,7 @@ namespace trabalho_oop.classes.biblioteca.menu
                     MenuItems menuItems = new MenuItems(acervo, this);
                     break;
                 case 3:
-                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos(cadEmprestimos, this);
+                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos(cadEmprestimos, cadUsuarios, acervo, this);
                     break;
                 default:
                     Logout();

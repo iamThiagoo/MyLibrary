@@ -54,5 +54,18 @@ namespace trabalho_oop.classes.biblioteca.produtos
         {
             return $"Identificação: {identificacao}, Título: {titulo}, Situação: {situacao}";
         }
+
+
+        public int getPrazoEntrega() {
+            if (this is Livro) {
+                return 7;
+            }
+            else if (this is Periodico) {
+                return 4;
+            }
+            else {
+                return 2;
+            }
+        }
     }
 }

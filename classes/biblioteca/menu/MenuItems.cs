@@ -62,6 +62,12 @@ namespace trabalho_oop.classes.biblioteca.menu
                     ListaItems("DVDs");
                     break;
                 case 5:
+                    if(ExcluirItem()) {
+                        Console.WriteLine("\n✅ Item removido com sucesso do Acervo!");
+                    } else {
+                        Console.WriteLine("\n❌ Ocorreu um erro ao excluir o item... Verifique se o item está Disponível no Acervo ou se a Identificação está correta!");
+                    }
+
                     break;
                 default:
                     break;
@@ -195,9 +201,9 @@ namespace trabalho_oop.classes.biblioteca.menu
                     ItemBiblioteca item = acervo.GetItemByIndex(i);
                 
                     if (
-                        (tipoItem == "DVDs" && item.GetType() == typeof(DVD)) ||
-                        (tipoItem == "Livros" && item.GetType() == typeof(Livro)) ||
-                        (tipoItem == "Periódicos" && item.GetType() == typeof(Periodico))
+                        (tipoItem == "DVDs" && item is DVD) ||
+                        (tipoItem == "Livros" && item is Livro) ||
+                        (tipoItem == "Periódicos" && item is Periodico)
                     ){
                         string tipoItemMessage;
 
@@ -217,6 +223,17 @@ namespace trabalho_oop.classes.biblioteca.menu
             } else {
                 Console.WriteLine("\nNenhum item adicionado!");
             }
+        }
+
+        public bool ExcluirItem()
+        {
+            Console.Clear();
+            MenuTitulo($"Excluir Item da Biblioteca");
+
+            Console.WriteLine("Informe a identificação do item:");
+            int identificacao = EntradaDados.RetorneInteiro();
+
+            return acervo.DeleteByIdentificacao(identificacao);
         }
     }
 }
