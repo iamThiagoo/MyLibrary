@@ -14,15 +14,16 @@ namespace trabalho_oop.classes.biblioteca.menu
             cadUsuarios = new CadUsuarios();
             cadEmprestimos = new CadEmprestimos();
 
-            Console.Clear();
-
-            Logo();
-            MenuTitulo("Seja bem-vindo ao MyLibrary");
             Opcoes();
         }
 
         public override void Opcoes()
         {
+            Console.Clear();
+            
+            Logo();
+            MenuTitulo("Seja bem-vindo ao MyLibrary");
+
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
             Console.WriteLine("1 - Listar ações para usuários");
@@ -46,13 +47,13 @@ namespace trabalho_oop.classes.biblioteca.menu
             switch (opcao)
             {
                 case 1:
-                    MenuUsuarios menuUsuarios = new MenuUsuarios(cadUsuarios);
+                    MenuUsuarios menuUsuarios = new MenuUsuarios(cadUsuarios, this);
                     break;
                 case 2:
-                    MenuItems menuItems = new MenuItems(acervo);
+                    MenuItems menuItems = new MenuItems(acervo, this);
                     break;
                 case 3:
-                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos(cadEmprestimos);
+                    MenuEmprestimos menuEmprestimos = new MenuEmprestimos(cadEmprestimos, this);
                     break;
                 default:
                     Logout();

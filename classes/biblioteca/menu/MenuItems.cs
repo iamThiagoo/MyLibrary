@@ -1,23 +1,24 @@
 using trabalho_oop.classes.biblioteca.produtos;
-using trabalho_oop.interfaces;
 
 namespace trabalho_oop.classes.biblioteca.menu
 {
     public class MenuItems : Menu
     {
         private Acervo acervo;
+        private MenuOpcoes menuOpcoes;
 
-        public MenuItems(Acervo acervo)
+        public MenuItems(Acervo acervo, MenuOpcoes menuOpcoes)
         {
             this.acervo = acervo;
+            this.menuOpcoes = menuOpcoes;
             
-            Console.Clear();
-            MenuTitulo("Ações para Items");
             Opcoes();
         }
 
         public override void Opcoes()
         {
+            Console.Clear();
+            MenuTitulo("Ações para Items");
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
             Console.WriteLine("1 - Cadastrar novo Item");
@@ -31,7 +32,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             int opcao;
 
             if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
-                MenuOpcoes menu = new MenuOpcoes();
+                menuOpcoes.Opcoes();
                 return;
             }
 
@@ -69,15 +70,13 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.WriteLine("\nAperte qualquer tecla para Voltar ao Menu de Items");
             Console.ReadKey();
 
-            Console.Clear();
             Opcoes();
         }
 
         public override void OpcaoInvalida()
         {
-            Console.WriteLine("\nOpção inválida. Tente novamente:");
+            Console.WriteLine("\nOpção inválida. Tente novamente!");
             Thread.Sleep(2000);
-            Console.Clear();
             Opcoes();
         }
 

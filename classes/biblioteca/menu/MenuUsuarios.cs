@@ -1,23 +1,25 @@
 using trabalho_oop.classes.usuarios;
-using trabalho_oop.interfaces;
 
 namespace trabalho_oop.classes.biblioteca.menu
 {
     public class MenuUsuarios : Menu
     {
         private CadUsuarios cadUsuarios;
+        private MenuOpcoes menuOpcoes;
 
-        public MenuUsuarios(CadUsuarios cadUsuarios)
+        public MenuUsuarios(CadUsuarios cadUsuarios, MenuOpcoes menuOpcoes)
         {   
             this.cadUsuarios = cadUsuarios;
+            this.menuOpcoes  = menuOpcoes;
             
-            Console.Clear();
-            MenuTitulo("Ações para Usuários");
             Opcoes();
         }
 
         public override void Opcoes()
         {
+            Console.Clear();
+            MenuTitulo("Ações para Usuários");
+
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
             Console.WriteLine("1 - Cadastrar usuário");
@@ -29,7 +31,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             int opcao;
 
             if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
-                MenuOpcoes menu = new MenuOpcoes();
+                menuOpcoes.Opcoes();
                 return;
             }
 
@@ -71,7 +73,6 @@ namespace trabalho_oop.classes.biblioteca.menu
         {
             Console.WriteLine("\nOpção inválida. Tente novamente!");
             Thread.Sleep(2000);
-            Console.Clear();
             Opcoes();
         }
 

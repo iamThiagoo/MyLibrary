@@ -1,22 +1,23 @@
-using trabalho_oop.interfaces;
-
 namespace trabalho_oop.classes.biblioteca.menu
 {
     public class MenuEmprestimos : Menu
     {
         private CadEmprestimos cadEmprestimos;
+        private MenuOpcoes menuOpcoes;
 
-        public MenuEmprestimos(CadEmprestimos cadEmprestimos)
+        public MenuEmprestimos(CadEmprestimos cadEmprestimos, MenuOpcoes menuOpcoes)
         {
             this.cadEmprestimos = cadEmprestimos;
+            this.menuOpcoes = menuOpcoes;
 
-            Console.Clear();
-            MenuTitulo("Ações para Empréstimos");
             Opcoes();
         }
 
         public override void Opcoes()
         {
+            Console.Clear();
+            MenuTitulo("Ações para Empréstimos");
+
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
             Console.WriteLine("1 - Cadastrar novo Empréstimo");
@@ -28,7 +29,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             int opcao;
 
             if (resposta.Equals("V", StringComparison.OrdinalIgnoreCase)) {
-                MenuOpcoes menu = new MenuOpcoes();
+                menuOpcoes.Opcoes();
                 return;
             }
 
@@ -47,9 +48,8 @@ namespace trabalho_oop.classes.biblioteca.menu
 
         public override void OpcaoInvalida()
         {
-            Console.WriteLine("\nOpção inválida. Tente novamente:");
+            Console.WriteLine("\nOpção inválida. Tente novamente!");
             Thread.Sleep(2000);
-            Console.Clear();
             Opcoes();
         }
 
