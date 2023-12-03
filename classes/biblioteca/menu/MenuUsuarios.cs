@@ -5,11 +5,13 @@ namespace trabalho_oop.classes.biblioteca.menu
     public class MenuUsuarios : Menu
     {
         private CadUsuarios cadUsuarios;
+        private CadEmprestimos cadEmprestimos;
         private MenuOpcoes menuOpcoes;
 
-        public MenuUsuarios(CadUsuarios cadUsuarios, MenuOpcoes menuOpcoes)
+        public MenuUsuarios(CadUsuarios cadUsuarios, CadEmprestimos cadEmprestimos, MenuOpcoes menuOpcoes)
         {   
             this.cadUsuarios = cadUsuarios;
+            this.cadEmprestimos = cadEmprestimos;
             this.menuOpcoes  = menuOpcoes;
             
             Opcoes();
@@ -50,13 +52,13 @@ namespace trabalho_oop.classes.biblioteca.menu
                 case 1:
                     Usuario usuario = CadUsuario();
                     cadUsuarios.AddUser(usuario);
-                    
                     Console.WriteLine("\n ✅ Usuário adicionado com sucesso!");
                     break;
                 case 2:
                     ListaUsuarios();
                     break;
                 case 3:
+                    ExcluirUsuario();
                     break;
                 default:
                     break;
@@ -128,7 +130,6 @@ namespace trabalho_oop.classes.biblioteca.menu
             return usuario;
         }
 
-
         public void ListaUsuarios()
         {
             Console.Clear();
@@ -146,6 +147,27 @@ namespace trabalho_oop.classes.biblioteca.menu
                 }
             } else {
                 Console.WriteLine("\nNenhum usuário cadastrado!");
+            }
+        }
+
+        public void ExcluirUsuario()
+        {
+            Console.Clear();
+            MenuTitulo("Exclusão de Usuário");
+
+            Console.WriteLine("\nInforme a matrícula do usuário");
+            string matricula = Console.ReadLine()!;
+            Usuario usuario = cadUsuarios.GetUserByMatricula(matricula);
+
+            if(usuario != null) {
+                if(cadEmprestimos.GetEmprestimoByUsuario(usuario) == null) {
+                    cadUsuarios.RemoveUser(usuario);
+                    Console.WriteLine("\n ✅ Usuário removido com sucesso!");
+                } else {
+                    Console.WriteLine("\n❌ Usuário com empréstimos pendentes!");
+                }
+            } else {
+                Console.WriteLine("\n❌ Usuário não encontrado!");
             }
         }
     }

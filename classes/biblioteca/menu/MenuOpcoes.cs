@@ -47,7 +47,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             switch (opcao)
             {
                 case 1:
-                    MenuUsuarios menuUsuarios = new MenuUsuarios(cadUsuarios, this);
+                    MenuUsuarios menuUsuarios = new MenuUsuarios(cadUsuarios, cadEmprestimos, this);
                     break;
                 case 2:
                     MenuItems menuItems = new MenuItems(acervo, this);

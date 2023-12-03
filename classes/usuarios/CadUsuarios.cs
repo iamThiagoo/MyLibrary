@@ -18,6 +18,11 @@ namespace trabalho_oop.classes.usuarios
             usuarios.Add(usuario);
         }
 
+        public void RemoveUser(Usuario usuario)
+        {
+            usuarios.Remove(usuario);
+        }
+
         public int Count()
         {
             return usuarios.Count;

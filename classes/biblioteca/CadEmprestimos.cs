@@ -1,5 +1,4 @@
-using System;
-using trabalho_oop.classes.biblioteca.produtos;
+using trabalho_oop.classes.usuarios;
 
 namespace trabalho_oop.classes.biblioteca
 {
@@ -41,6 +40,11 @@ namespace trabalho_oop.classes.biblioteca
         public Emprestimo GetEmprestimoByIdentificacao(int identificacao)
         {
             return emprestimos.FirstOrDefault(emprestimo => emprestimo.Identificacao == identificacao)!;
+        }
+
+        public Emprestimo GetEmprestimoByUsuario(Usuario usuario)
+        {
+            return emprestimos.FirstOrDefault(emprestimo => emprestimo.Usuario == usuario)!;
         }
 
         public void Atrasos() {
