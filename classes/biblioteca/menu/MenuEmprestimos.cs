@@ -27,7 +27,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public override void Opcoes()
         {
             Console.Clear();
-            MenuTitulo("Ações para Empréstimos");
+            Titulo("Ações para Empréstimos");
 
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
@@ -93,13 +93,13 @@ namespace trabalho_oop.classes.biblioteca.menu
         public Emprestimo? CadEmprestimo()
         {
             Console.Clear();
-            MenuTitulo("Cadastro de Empréstimo");
+            Titulo("Cadastro de Empréstimo");
 
             Console.WriteLine("\nInforme a identificação do item:");
             int itemIdentificacao = EntradaDados.RetorneInteiro();
-            ItemBiblioteca item = acervo.GetItemByIdentificacao(itemIdentificacao);
+            ItemBiblioteca item = acervo.GetItemPorIdentificacao(itemIdentificacao);
 
-            if (item == null || !acervo.ItemEstaDisponivel(itemIdentificacao)) {
+            if (item == null || !acervo.ItemDisponivel(itemIdentificacao)) {
                 Console.WriteLine("\n ❌ O item não existe ou não está disponível para empréstimo!");
                 return null;
             }
@@ -107,7 +107,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.WriteLine("\nInforme a matrícula do usuário:");
             string usuarioMatricula = Console.ReadLine()!;
 
-            Usuario usuario = cadUsuarios.GetUserByMatricula(usuarioMatricula);
+            Usuario usuario = cadUsuarios.GetUsuariosPorMatricula(usuarioMatricula);
             if (usuario == null) {
                 Console.WriteLine("\n ❌ O usuário não existe!");
                 return null;
@@ -125,10 +125,10 @@ namespace trabalho_oop.classes.biblioteca.menu
         public void ListaEmprestimos()
         {
             Console.Clear();
-            MenuTitulo("Lista de Empréstimos");
+            Titulo("Lista de Empréstimos");
 
             if (cadEmprestimos.Count() > 0) {
-                foreach (Emprestimo emprestimo in cadEmprestimos.GetEmprestimosOrdenados()) {
+                foreach (Emprestimo emprestimo in cadEmprestimos.EmprestimosOrdenadosPorDataDevolucao()) {
                     Console.WriteLine(emprestimo.ToString());
                 }
             } else {
@@ -139,11 +139,11 @@ namespace trabalho_oop.classes.biblioteca.menu
         public bool DevolucaoEmprestimo()
         {
             Console.Clear();
-            MenuTitulo("Devolução de Empréstimo");
+            Titulo("Devolução de Empréstimo");
 
             Console.WriteLine("\nInforme a identificação do item:");
             int emprestimoIdentificacao = EntradaDados.RetorneInteiro();
-            Emprestimo emprestimo = cadEmprestimos.GetEmprestimoByIdentificacao(emprestimoIdentificacao);
+            Emprestimo emprestimo = cadEmprestimos.GetEmprestimoPorIdentificacao(emprestimoIdentificacao);
 
             if (emprestimo != null) {
                 emprestimo.Retornar();

@@ -9,7 +9,7 @@ namespace trabalho_oop.classes.biblioteca
         public Acervo ()
         {
             items = new List<ItemBiblioteca>();
-            AddItems();
+            AddItemsExemplos();
         }
 
         public void AddItem(ItemBiblioteca item)
@@ -17,18 +17,23 @@ namespace trabalho_oop.classes.biblioteca
             items.Add(item);
         }
 
-        public ItemBiblioteca GetItemByIndex(int index)
-        {
-            ItemBiblioteca item = items[index];
-            return item;
-        }
-
         public int Count()
         {
             return items.Count;
         }
 
-        public bool DeleteByIdentificacao(int identificacao)
+        public ItemBiblioteca GetItemPorIndice(int index)
+        {
+            ItemBiblioteca item = items[index];
+            return item;
+        }
+
+        public ItemBiblioteca GetItemPorIdentificacao(int identificacao)
+        {
+            return items.FirstOrDefault(item => item.Identificacao == identificacao)!;
+        }
+
+        public bool RemoveItemPorIdentificacao(int identificacao)
         {
             if (items.Count > 0) {
                 ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao)!;
@@ -42,7 +47,7 @@ namespace trabalho_oop.classes.biblioteca
             return false;
         }
 
-        public bool ItemEstaDisponivel(int identificacao)
+        public bool ItemDisponivel(int identificacao)
         {
             if (items.Count > 0) {
                 ItemBiblioteca item = items.FirstOrDefault(item => item.Identificacao == identificacao)!;
@@ -55,12 +60,7 @@ namespace trabalho_oop.classes.biblioteca
             return false;
         }
 
-        public ItemBiblioteca GetItemByIdentificacao(int identificacao)
-        {
-            return items.FirstOrDefault(item => item.Identificacao == identificacao)!;
-        }
-
-        public void AddItems()
+        public void AddItemsExemplos()
         {
             string[] linhas = File.ReadAllLines("exemplos/Acervo.txt");
             int lineIndex = 0;

@@ -1,5 +1,3 @@
-using System;
-
 namespace trabalho_oop.interfaces
 {
     public interface IEmprestavel 

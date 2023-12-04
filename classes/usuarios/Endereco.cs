@@ -1,6 +1,3 @@
-using System;
-using System.Text.RegularExpressions;
-
 namespace trabalho_oop.classes.usuarios
 {
     public class Endereco

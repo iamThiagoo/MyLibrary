@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-
 namespace trabalho_oop.classes.usuarios
 {
     public class CadUsuarios
@@ -10,15 +7,15 @@ namespace trabalho_oop.classes.usuarios
         public CadUsuarios ()
         {
             usuarios = new List<Usuario>();
-            AddUsuarios();
+            AddUsuariosExemplos();
         }
 
-        public void AddUser(Usuario usuario)
+        public void AddUsuario(Usuario usuario)
         {
             usuarios.Add(usuario);
         }
 
-        public void RemoveUser(Usuario usuario)
+        public void RemoveUsuario(Usuario usuario)
         {
             usuarios.Remove(usuario);
         }
@@ -34,7 +31,12 @@ namespace trabalho_oop.classes.usuarios
             return usuario;
         }
 
-        public bool DeleteUserByMatricula(string matricula)
+        public Usuario GetUsuariosPorMatricula(string matricula)
+        {
+            return usuarios.FirstOrDefault(usuario => usuario.Matricula == matricula)!;
+        }
+
+        public bool DeletaUsuarioPorMatricula(string matricula)
         {
             if (usuarios.Count > 0) {
                 Usuario usuario = usuarios.FirstOrDefault(usuario => usuario.Matricula == matricula)!;
@@ -48,12 +50,7 @@ namespace trabalho_oop.classes.usuarios
             return false;
         }
 
-        public Usuario GetUserByMatricula(string matricula)
-        {
-            return usuarios.FirstOrDefault(usuario => usuario.Matricula == matricula)!;
-        }
-
-        private void AddUsuarios()
+        private void AddUsuariosExemplos()
         {
             string[] linhas = File.ReadAllLines("exemplos/Usuarios.txt");
             List<string> userData = new List<string>();

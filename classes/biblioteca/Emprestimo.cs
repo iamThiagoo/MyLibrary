@@ -61,7 +61,7 @@ namespace trabalho_oop.classes.biblioteca
         public void Retornar() 
         {
             item.Situacao = "Disponível";
-            cadEmprestimos.DeleteEmprestimo(this);
+            cadEmprestimos.RemoveEmprestimo(this);
         }
 
         public override string ToString()

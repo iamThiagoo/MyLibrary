@@ -6,7 +6,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public abstract void ExecutaOpcao(int opcao);
         public abstract void OpcaoInvalida();
 
-        public static void MenuTitulo(string titulo)
+        public static void Titulo(string titulo)
         {
             Console.WriteLine(new string('-', 72));
             Console.WriteLine(

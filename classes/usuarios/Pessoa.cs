@@ -1,5 +1,3 @@
-using System;
-
 namespace trabalho_oop.classes.usuarios
 {
     public class Pessoa

@@ -22,7 +22,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             Console.Clear();
             
             Logo();
-            MenuTitulo("Seja bem-vindo ao MyLibrary");
+            Titulo("Seja bem-vindo ao MyLibrary");
 
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 

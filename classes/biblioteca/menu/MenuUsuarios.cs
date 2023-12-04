@@ -20,7 +20,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public override void Opcoes()
         {
             Console.Clear();
-            MenuTitulo("Ações para Usuários");
+            Titulo("Ações para Usuários");
 
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
@@ -51,7 +51,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             switch (opcao){
                 case 1:
                     Usuario usuario = CadUsuario();
-                    cadUsuarios.AddUser(usuario);
+                    cadUsuarios.AddUsuario(usuario);
                     Console.WriteLine("\n ✅ Usuário adicionado com sucesso!");
                     break;
                 case 2:
@@ -81,7 +81,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public Usuario CadUsuario() 
         {
             Console.Clear();
-            MenuTitulo("Cadastro de Usuário");
+            Titulo("Cadastro de Usuário");
 
             Console.WriteLine("\nInforme o nome do Usuário:");
             string nome = Console.ReadLine()!;
@@ -133,7 +133,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public void ListaUsuarios()
         {
             Console.Clear();
-            MenuTitulo("Todos os Usuários");
+            Titulo("Todos os Usuários");
 
             if (cadUsuarios.Count() > 0) {
                 for(int i = 0; i < cadUsuarios.Count(); i++)
@@ -153,15 +153,15 @@ namespace trabalho_oop.classes.biblioteca.menu
         public void ExcluirUsuario()
         {
             Console.Clear();
-            MenuTitulo("Exclusão de Usuário");
+            Titulo("Exclusão de Usuário");
 
             Console.WriteLine("\nInforme a matrícula do usuário");
             string matricula = Console.ReadLine()!;
-            Usuario usuario = cadUsuarios.GetUserByMatricula(matricula);
+            Usuario usuario = cadUsuarios.GetUsuariosPorMatricula(matricula);
 
             if(usuario != null) {
-                if(cadEmprestimos.GetEmprestimoByUsuario(usuario) == null) {
-                    cadUsuarios.RemoveUser(usuario);
+                if(cadEmprestimos.GetEmprestimoPorUsuario(usuario) == null) {
+                    cadUsuarios.RemoveUsuario(usuario);
                     Console.WriteLine("\n ✅ Usuário removido com sucesso!");
                 } else {
                     Console.WriteLine("\n❌ Usuário com empréstimos pendentes!");

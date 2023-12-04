@@ -16,7 +16,7 @@ namespace trabalho_oop.classes.biblioteca
             emprestimos.Add(emprestimo);
         }
 
-        public void DeleteEmprestimo(Emprestimo emprestimo)
+        public void RemoveEmprestimo(Emprestimo emprestimo)
         {
             emprestimos.Remove(emprestimo);
         }
@@ -26,25 +26,25 @@ namespace trabalho_oop.classes.biblioteca
             return emprestimos.Count;
         }
 
-        public List<Emprestimo> GetEmprestimosOrdenados()
-        {
-            return emprestimos.OrderBy(emprestimo => emprestimo.DataDevolucao).ToList();
-        }
-
-        public Emprestimo GetEmprestimoByIndex(int index)
+        public Emprestimo GetEmprestimoPorIndice(int index)
         {
             Emprestimo usuario = emprestimos[index];
             return usuario;
         }
 
-        public Emprestimo GetEmprestimoByIdentificacao(int identificacao)
+        public Emprestimo GetEmprestimoPorIdentificacao(int identificacao)
         {
             return emprestimos.FirstOrDefault(emprestimo => emprestimo.Identificacao == identificacao)!;
         }
 
-        public Emprestimo GetEmprestimoByUsuario(Usuario usuario)
+        public Emprestimo GetEmprestimoPorUsuario(Usuario usuario)
         {
             return emprestimos.FirstOrDefault(emprestimo => emprestimo.Usuario == usuario)!;
+        }
+
+        public List<Emprestimo> EmprestimosOrdenadosPorDataDevolucao()
+        {
+            return emprestimos.OrderBy(emprestimo => emprestimo.DataDevolucao).ToList();
         }
 
         public void Atrasos() {

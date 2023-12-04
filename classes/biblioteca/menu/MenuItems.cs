@@ -18,7 +18,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public override void Opcoes()
         {
             Console.Clear();
-            MenuTitulo("Ações para Items");
+            Titulo("Ações para Items");
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
             Console.WriteLine("1 - Cadastrar novo Item");
@@ -89,7 +89,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public ItemBiblioteca CadItem()
         {
             Console.Clear();
-            MenuTitulo("Cadastro de Item");
+            Titulo("Cadastro de Item");
             string itemTipo;
 
             while(true) {
@@ -122,7 +122,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public Livro CadItemLivro() 
         {
             Console.Clear();
-            MenuTitulo("Cadastro de Item - Livro");
+            Titulo("Cadastro de Item - Livro");
 
             Console.WriteLine("\nInsira uma identificação ao item:");
             int identificacao =EntradaDados.RetorneInteiro();
@@ -147,7 +147,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public DVD CadItemDVD() 
         {
             Console.Clear();
-            MenuTitulo("Cadastro de Item - DVD");
+            Titulo("Cadastro de Item - DVD");
 
             Console.WriteLine("\nInsira uma identificação ao item:");
             int identificacao = EntradaDados.RetorneInteiro()!;
@@ -169,7 +169,7 @@ namespace trabalho_oop.classes.biblioteca.menu
         public Periodico CadItemPeriodico() 
         {
             Console.Clear();
-            MenuTitulo("Cadastro de Item - Revista/Periódico");
+            Titulo("Cadastro de Item - Revista/Periódico");
 
             Console.WriteLine("\nInsira uma identificação ao item:");
             int identificacao = EntradaDados.RetorneInteiro();
@@ -194,11 +194,11 @@ namespace trabalho_oop.classes.biblioteca.menu
         public void ListaItems(string tipoItem)
         {
             Console.Clear();
-            MenuTitulo($"Lista de {tipoItem} cadastrados");
+            Titulo($"Lista de {tipoItem} cadastrados");
 
             if (acervo.Count() > 0) {
                 for(int i = 0; i < acervo.Count(); i++) {
-                    ItemBiblioteca item = acervo.GetItemByIndex(i);
+                    ItemBiblioteca item = acervo.GetItemPorIndice(i);
                 
                     if (
                         (tipoItem == "DVDs" && item is DVD) ||
@@ -228,12 +228,12 @@ namespace trabalho_oop.classes.biblioteca.menu
         public bool ExcluirItem()
         {
             Console.Clear();
-            MenuTitulo($"Excluir Item da Biblioteca");
+            Titulo($"Excluir Item da Biblioteca");
 
             Console.WriteLine("Informe a identificação do item:");
             int identificacao = EntradaDados.RetorneInteiro();
 
-            return acervo.DeleteByIdentificacao(identificacao);
+            return acervo.RemoveItemPorIdentificacao(identificacao);
         }
     }
 }
