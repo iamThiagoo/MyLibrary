@@ -56,7 +56,8 @@ namespace trabalho_oop.classes.biblioteca.produtos
         }
 
 
-        public int getPrazoEntrega() {
+        public int GetPrazoEntrega() 
+        {
             if (this is Livro) {
                 return 7;
             }

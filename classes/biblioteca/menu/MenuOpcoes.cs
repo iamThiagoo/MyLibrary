@@ -26,8 +26,8 @@ namespace trabalho_oop.classes.biblioteca.menu
 
             Console.WriteLine("\nSelecione entre as opções disponíveis:\n");
 
-            Console.WriteLine("1 - Listar ações para usuários");
-            Console.WriteLine("2 - Listar ações para itens");
+            Console.WriteLine("1 - Listar ações para Usuários");
+            Console.WriteLine("2 - Listar ações para Itens");
             Console.WriteLine("3 - Listar ações para Empréstimos");
             Console.WriteLine("0 - Logout/Sair");
 

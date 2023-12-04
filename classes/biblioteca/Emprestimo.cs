@@ -60,14 +60,14 @@ namespace trabalho_oop.classes.biblioteca
 
         public void Retornar() 
         {
-            item.Situacao = "Disponível";
+            item.Situacao = "Disponivel";
             cadEmprestimos.RemoveEmprestimo(this);
         }
 
         public override string ToString()
         {
-            string dataEmprestimoFormat = dataEmprestimo.ToString("d/M/Y");
-            string dataDevolucaoFormat = dataEmprestimo.ToString("d/M/y"); 
+            string dataEmprestimoFormat = dataEmprestimo.ToString("d/M/yyyy");
+            string dataDevolucaoFormat = dataDevolucao.ToString("d/M/yyyy"); 
 
             return $"\nIdentificação: {identificacao}" +
                    $"\nItem: {item.Titulo}" +

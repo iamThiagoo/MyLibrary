@@ -117,7 +117,7 @@ namespace trabalho_oop.classes.biblioteca.menu
             int identificacaoEmprestimo = EntradaDados.RetorneInteiro();
 
             Emprestimo emprestimo = new Emprestimo(identificacaoEmprestimo, cadEmprestimos);
-            emprestimo.Emprestar(usuario, item, item.getPrazoEntrega());
+            emprestimo.Emprestar(usuario, item, item.GetPrazoEntrega());
 
             return emprestimo;
         }
@@ -132,7 +132,7 @@ namespace trabalho_oop.classes.biblioteca.menu
                     Console.WriteLine(emprestimo.ToString());
                 }
             } else {
-                Console.WriteLine("\nNenhum empréstimo realizado!");
+                Console.WriteLine("\nNenhum empréstimo ativo!");
             }
         }
 
